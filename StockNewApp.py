@@ -8,7 +8,7 @@ import numpy as np
 device = torch.device("cpu")  # Force CPU usage on Streamlit Cloud
 
 # Initialize summarizer
-summarizer = pipeline("summarization", model="facebook/bart-large-cnn", device=0 if torch.cuda.is_available() else -1)
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn", device=-1)
 
 # Load sentiment model
 MODEL = "cardiffnlp/twitter-roberta-base-sentiment-latest"

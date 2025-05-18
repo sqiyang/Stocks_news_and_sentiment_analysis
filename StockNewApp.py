@@ -5,7 +5,7 @@ from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassifica
 import numpy as np
 
 # Set device
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")  # Force CPU usage on Streamlit Cloud
 
 # Initialize summarizer
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn", device=0 if torch.cuda.is_available() else -1)
@@ -53,7 +53,7 @@ if st.button("Analyze"):
     if not feed.entries:
         st.warning("No headlines found.")
     else:
-        headlines = [entry.title for entry in feed.entries[:5]]
+        headlines = [entry.title for entry in feed.entries[:10]]
         st.subheader("Latest Headlines")
         for h in headlines:
             st.markdown(f"- {h}")

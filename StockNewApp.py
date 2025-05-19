@@ -7,8 +7,16 @@ import numpy as np
 # Set device
 device = torch.device("cpu")  # Force CPU usage on Streamlit Cloud
 
-# Initialize summarizer
-summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", device=-1)
+@st.cache_resource
+def load_summarizer():
+    return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", device=-1)
+
+@st.cache_resource
+def load_sentiment():
+    return pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest", device=-1)
+
+summarizer = load_summarizer()
+sentiment_pipeline = load_sentiment()
 
 # Load sentiment model
 MODEL = "cardiffnlp/twitter-roberta-base-sentiment-latest"

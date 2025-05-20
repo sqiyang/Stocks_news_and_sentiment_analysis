@@ -6,27 +6,30 @@ import numpy as np
 
 st.set_page_config(page_title="Stock News Summarizer", layout="centered")
 
-# Set device
-device = torch.device("cpu")  # Force CPU usage on Streamlit Cloud
+# Force CPU usage on Streamlit Cloud
+device = torch.device("cpu")
 
 @st.cache_resource
 def load_summarizer():
     return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", device=-1)
 
 @st.cache_resource
-def load_sentiment():
-    return pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest", device=-1)
+def load_sentiment_model():
+    model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name,
+        low_cpu_mem_usage=False  # Avoid meta tensor issue
+    ).to(device)
+    return tokenizer, model
 
+# Load models
 summarizer = load_summarizer()
-sentiment_pipeline = load_sentiment()
+tokenizer, model = load_sentiment_model()
 
-# Load sentiment model
-MODEL = "cardiffnlp/twitter-roberta-base-sentiment-latest"
-tokenizer = AutoTokenizer.from_pretrained(MODEL)
-model = AutoModelForSequenceClassification.from_pretrained(MODEL).to(device)
 labels = ['negative', 'neutral', 'positive']
 
-# Sentiment function
+# Sentiment scoring
 def get_sentiment_score(text):
     try:
         inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=512).to(device)
@@ -37,7 +40,7 @@ def get_sentiment_score(text):
     except Exception as e:
         return {"error": str(e)}, 0
 
-# Summarizer function
+# Summarizer logic
 def summarize_headlines_locally(headlines):
     if not headlines:
         return None

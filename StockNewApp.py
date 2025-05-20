@@ -4,6 +4,8 @@ import torch
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 import numpy as np
 
+st.set_page_config(page_title="Stock News Summarizer", layout="centered")
+
 # Set device
 device = torch.device("cpu")  # Force CPU usage on Streamlit Cloud
 
@@ -49,7 +51,6 @@ def summarize_headlines_locally(headlines):
         return f"Summarizer Error: {e}"
 
 # Streamlit UI
-st.set_page_config(page_title="Stock News Summarizer", layout="centered")
 st.title("📈 Stock News Summarizer & Sentiment Analyzer")
 
 stock = st.text_input("Enter a Stock Symbol (e.g., AAPL, TSLA, MSFT)", "AAPL")

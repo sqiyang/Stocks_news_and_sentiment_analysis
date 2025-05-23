@@ -77,7 +77,7 @@ if st.button("Analyze"):
 
             sentiment, score = get_sentiment_score(summary)
             st.subheader("📊 Sentiment Analysis")
-            st.write(sentiment)
-            st.metric(label="Sentiment Score (Positive - Negative)", value=f"{score:.2f}")
+            #st.write(sentiment)
+            st.metric(label="Sentiment Score (-1 to 1)", value=f"{score:.2f}")
         else:
             st.error("Failed to summarize the headlines.")

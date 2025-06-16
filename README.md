@@ -1,94 +1,35 @@
-📈 Stock News Summarizer & Sentiment Analyzer
-This is a simple and interactive Streamlit web application that fetches the latest stock news headlines, summarizes them using a pre-trained transformer model, and analyzes the overall sentiment of the summarized news.
+# Stock News Summarizer & Sentiment Analyzer
 
+A simple and powerful Streamlit web app that fetches the latest financial news for any stock symbol, summarizes the headlines using NLP, and performs sentiment analysis on the summarized content.
 
-🚀 Features
-🔎 Enter any stock symbol (e.g., AAPL, TSLA, MSFT)
+**Try it here:** [Stock News Summarizer App](https://stocksanalysis-5mork6kxedzapplt2pwwh3p.streamlit.app/)
 
-📰 Fetch latest headlines from Yahoo Finance RSS feeds
+---
 
-📝 Summarize multiple news headlines using a fine-tuned BART model
+## Features
 
-📊 Perform sentiment analysis on the summarized news using Twitter RoBERTa
+- 🔎 Enter any **stock ticker symbol** (e.g., `AAPL`, `TSLA`, `MSFT`)
+- 📰 Fetch the **latest 10 headlines** from Yahoo Finance RSS feeds
+- 📝 Generate a **summary of the headlines** using a pre-trained transformer model
+- 📊 Perform **sentiment analysis** on the summary using a RoBERTa-based sentiment classifier
+- 📉 View a **sentiment score** between -1 (negative) and +1 (positive)
 
-⚖️ Sentiment score range from -1 (negative) to +1 (positive)
+---
 
-🧠 Models Used
-Summarization: sshleifer/distilbart-cnn-12-6 — a distilled BART model fine-tuned for CNN/DailyMail summarization.
+## Models Used
 
-Sentiment Analysis: cardiffnlp/twitter-roberta-base-sentiment-latest — a RoBERTa model trained on Twitter data for classifying text as positive, neutral, or negative.
+- **Summarization**  
+  [`sshleifer/distilbart-cnn-12-6`](https://huggingface.co/sshleifer/distilbart-cnn-12-6) — A distilled version of BART fine-tuned on the CNN/DailyMail dataset for abstractive summarization.
 
-🛠️ Installation
-Clone the repo
+- **Sentiment Analysis**  
+  [`cardiffnlp/twitter-roberta-base-sentiment-latest`](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest) — A RoBERTa model fine-tuned on Twitter data for sentiment classification into `positive`, `neutral`, and `negative`.
 
-bash
-Copy
-Edit
-git clone https://github.com/yourusername/stock-news-summarizer.git
-cd stock-news-summarizer
-Install dependencies
+---
 
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Run the app
+##  Installation
 
-bash
-Copy
-Edit
-streamlit run app.py
-📦 Dependencies
-streamlit
+1. **Clone the repository**
 
-feedparser
-
-torch
-
-transformers
-
-numpy
-
-You can install them all using:
-
-bash
-Copy
-Edit
-pip install streamlit feedparser torch transformers numpy
-📸 Example Output
-text
-Copy
-Edit
-Stock Symbol: TSLA
-
-Latest Headlines:
-- Tesla stock surges after earnings
-- Elon Musk teases new product launch
-...
-
-📝 Summary:
-Tesla reported strong earnings with higher-than-expected revenue. Elon Musk also hinted at a new product launch, boosting investor confidence...
-
-📊 Sentiment Score: +0.67 (Positive)
-⚙️ Deployment
-The app is designed to work on Streamlit Cloud, using CPU-only inference for resource compatibility.
-
-📄 License
-This project is open-source under the MIT License.
-
-🙌 Acknowledgements
-Hugging Face Transformers
-
-Streamlit
-
-Yahoo Finance RSS Feeds
-
-💡 Future Improvements
-Add multi-language support for global stocks
-
-Visualize sentiment over time
-
-Enable user-defined date ranges
-
-Integrate with stock price data for correlation insights
-
+   ```bash
+   git clone https://github.com/yourusername/stock-news-summarizer.git
+   cd stock-news-summarizer

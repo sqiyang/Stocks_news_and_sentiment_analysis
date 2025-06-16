@@ -2,7 +2,7 @@
 
 A simple and powerful Streamlit web app that fetches the latest financial news for any stock symbol, summarizes the headlines using NLP, and performs sentiment analysis on the summarized content.
 
-**Try it here:** [Stock News Summarizer App](https://stocksanalysis-5mork6kxedzapplt2pwwh3p.streamlit.app/)
+**Try it here:** [Stock News Summarizer App](https://stocksnewsandsentimentanalyzer-izmdnbxkhvlrcxaj9fguuj.streamlit.app/)
 
 ---
 
